@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { fetchAvailableFlights } from "../services/flightService";
 import { transformKiuResponse } from "../services/flightTransformService";
+
 export const availFlight = async (req: Request, res: Response) => {
   try {
-    const parsedResponse = await fetchAvailableFlights(req.body); // XML to JSON
+    const parsedResponse = await fetchAvailableFlights(req.body);
     const transformed = transformKiuResponse(parsedResponse);
     res.json(transformed);
   } catch (error: any) {
